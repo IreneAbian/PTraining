@@ -14,7 +14,13 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector2 movement = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
+		Vector2 movement;
+		#if UNITY_STANDALONE || UNITY_WEBPLAYER
+		movement = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
+
+		#elif UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
+		Debug.Log("Soy un comentario. Si, sin "//". Y punto.");
+		#endif
 
 		if (movement != Vector2.zero) {
 			anim.SetBool ("isWalking", true);
@@ -27,3 +33,4 @@ public class PlayerMovement : MonoBehaviour {
 		rb.MovePosition (rb.position + movement * Time.deltaTime);
 	}
 }
+
