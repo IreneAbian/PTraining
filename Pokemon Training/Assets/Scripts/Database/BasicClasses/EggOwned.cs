@@ -6,7 +6,7 @@ public class EggOwned {
 	[PrimaryKey, AutoIncrement]
 	public int Id{ get; set; }
 	public string Category{ get; set; }
-	public int[] Options{ get; set; }
+	public int[] Options = new int[10];
 	public int CurrentCycles{ get; set; }
 	public int TotalCycles{ get; set; }
 	public bool Equipped{ get; set; }

@@ -9,7 +9,7 @@ public class PlayerDAO{
 	}
 
 	public int ReadGold(){
-		Player player = _connection.Execute("Select * from Player");
+		Player player = _connection.Table<Player>().First();
 		return player.Gold;
 	}
 
@@ -19,10 +19,10 @@ public class PlayerDAO{
 	}
 
 	public Player ReadPlayer(){
-		Player player = _connection.Execute("Select * from Player");
+		return _connection.Table<Player>().First();
 	}
 
 	public void DeletePlayer(){
-		Player player = _connection.Execute("Delete * from Player");
+		_connection.Execute("Delete * from Player");
 	}
 }

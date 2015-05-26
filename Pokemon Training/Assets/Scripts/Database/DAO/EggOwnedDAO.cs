@@ -35,11 +35,11 @@ public class EggOwnedDAO{
 	}
 
 	public EggOwned ReadEquippedEgg(){
-		return _connection.Execute ("Select * from EggOwned where Equipped = true");
+		return _connection.Table<EggOwned> ().Where (x => x.Equipped == true).First();
 	}
 
 	public IEnumerable<EggOwned> ReadEggsOwned(){
-		_connection.Table<EggOwned> ();
+		return _connection.Table<EggOwned> ();
 	}
 
 	public void DeleteEggOwned(int id){

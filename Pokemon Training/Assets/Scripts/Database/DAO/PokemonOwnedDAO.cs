@@ -1,5 +1,6 @@
 using SQLite4Unity3d;
 using System.Collections.Generic;
+using System.Linq;
 
 public class PokemonOwnedDAO{
 
@@ -18,7 +19,7 @@ public class PokemonOwnedDAO{
 	}
 
 	public void CreatePokemonOwned(int basicId){
-		PokemonBasic pokemonBasic = _connection.Table<PokemonBasic> ().Where (x => x.Id == basicId);
+		PokemonBasic pokemonBasic = _connection.Table<PokemonBasic> ().Where (x => x.Id == basicId).First();
 		PokemonOwned pokemonOwned = new PokemonOwned ();
 		pokemonOwned.IdBasic = basicId;
 		pokemonOwned.Hp = pokemonBasic.BasicHp;
@@ -50,7 +51,7 @@ public class PokemonOwnedDAO{
 	}
 
 	public void UpdatePokemon(int idPokemon, PokemonOwned newPokemon){
-		PokemonOwned oldPokemon = _connection.Table<PokemonOwned> ().Where (x => x.Id == idPokemon);
+		PokemonOwned oldPokemon = _connection.Table<PokemonOwned> ().Where (x => x.Id == idPokemon).First();
 		_connection.Delete (oldPokemon);
 		newPokemon.Id = oldPokemon.Id;
 		_connection.Insert (newPokemon);
@@ -58,7 +59,8 @@ public class PokemonOwnedDAO{
 
 	public bool EquipPokemon(int idPokemon){
 		bool equipped = true;
-		int equippedPokemons = _connection.Table<PokemonOwned> ().Where (x => x.InTeam == true);
+		List<PokemonOwned> list = _connection.Table<PokemonOwned> ().Where (x => x.InTeam == true).ToList();
+		int equippedPokemons = list.Count ();
 		if (equippedPokemons >= 3) {
 			equipped = false;
 		} else {

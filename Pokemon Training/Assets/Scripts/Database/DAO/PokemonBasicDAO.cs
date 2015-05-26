@@ -10,7 +10,7 @@ public class PokemonBasicDAO{
 	}
 	
 	public PokemonBasic GetPokemon(int id){
-		return _connection.Table<PokemonBasic> ().Where (x => x.Id == id);
+		return _connection.Table<PokemonBasic> ().Where (x => x.Id == id).First();
 	}
 
 	public IEnumerable<PokemonBasic> GetPokemonBasics(){

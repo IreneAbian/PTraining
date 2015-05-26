@@ -14,7 +14,7 @@ public class ItemsBasicDAO{
 	}
 
 	public ItemsBasic GetItemBasic(string name){
-		return _connection.Table<ItemsBasic> ().Where (x => x.Name == name);
+		return _connection.Table<ItemsBasic> ().Where (x => x.Name == name).First();
 	}
 
 }

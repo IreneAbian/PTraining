@@ -8,9 +8,13 @@ using System.Collections.Generic;
 
 public class DataService  {
 
-	private SQLiteConnection _connection;
+	public SQLiteConnection _connection;
+	public static DataService instance = null;
 
 	public DataService(string DatabaseName){
+		if (instance == null) {
+			instance = this;
+		} 
 
 #if UNITY_EDITOR
             var dbPath = string.Format(@"Assets/StreamingAssets/{0}", DatabaseName);
@@ -49,35 +53,33 @@ public class DataService  {
 
         var dbPath = filepath;
 #endif
-            _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
+        _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create, false);
         Debug.Log("Final PATH: " + dbPath);     
 
 	}
 
 	public void CreateDB(){
-		_connection.DropTable<EggBasic> ();
-		_connection.DropTable<EggOwned> ();
-		_connection.DropTable<GrowthRates> ();
-		_connection.DropTable<ItemsBasic> ();
-		_connection.DropTable<ItemsOwned> ();
-		_connection.DropTable<Player> ();
-		_connection.DropTable<PokemonBasic> ();
-		_connection.DropTable<PokemonOwned> ();
-		_connection.DropTable<Types> ();
+	//	_connection.DropTable<EggBasic> ();
+	//	_connection.DropTable<EggOwned> ();
+	//	_connection.DropTable<GrowthRates> ();
+	//	_connection.DropTable<ItemsBasic> ();
+	//	_connection.DropTable<ItemsOwned> ();
+	//	_connection.DropTable<Player> ();
+	//	_connection.DropTable<PokemonBasic> ();
+	//	_connection.DropTable<PokemonOwned> ();
+	//	_connection.DropTable<Types> ();
 
-		_connection.CreateTable<EggBasic> ();
-		_connection.CreateTable<EggOwned> ();
-		_connection.CreateTable<GrowthRates> ();
-		_connection.CreateTable<ItemsBasic> ();
-		_connection.CreateTable<ItemsOwned> ();
-		_connection.CreateTable<Player> ();
-		_connection.CreateTable<PokemonBasic> ();
-		_connection.CreateTable<PokemonOwned> ();
-		_connection.CreateTable<Types> ();
+	//	_connection.CreateTable<EggBasic> ();
+	//	_connection.CreateTable<EggOwned> ();
+	//	_connection.CreateTable<GrowthRates> ();
+	//	_connection.CreateTable<ItemsBasic> ();
+	//	_connection.CreateTable<ItemsOwned> ();
+	//	_connection.CreateTable<Player> ();
+	//	_connection.CreateTable<PokemonBasic> ();
+	//	_connection.CreateTable<PokemonOwned> ();
+	//	_connection.CreateTable<Types> ();
 
-		_connection.Insert (new GrowthRates{GrowthRate = "Fast"});
+	//	_connection.Insert (new GrowthRates{GrowthRate = "Fast"});
 
 	}
-
-
 }
