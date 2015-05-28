@@ -6,7 +6,7 @@ public class GameController : MonoBehaviour {
 	public static GameController instance = null;
 	public GameObject mapa;
 	PlayerDAO player;
-
+	public GameObject jugador;
 
 	void Awake(){
 		DataService ds = new DataService ("PT");
@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour {
 
 	public void MostrarMapa(){
 		mapa.SetActive (true);
+		jugador.SetActive (true);
 	}
 
 	public void OcultarMapa(){

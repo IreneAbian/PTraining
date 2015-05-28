@@ -19,6 +19,7 @@ public class UIController : MonoBehaviour {
 	public void MostrarPanelJuego(){
 		EsconderPaneles ();
 		paneles [1].SetActive (true);
+		GameController.instance.MostrarMapa ();
 	}
 
 	public void EsconderPaneles(){

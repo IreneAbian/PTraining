@@ -8,7 +8,7 @@ public class CrearJugador : MonoBehaviour {
 	void OnClick(){
 		PlayerDAO player = new PlayerDAO ();
 		player.CrearJugador (labelNombre.GetComponent<UILabel> ().text);
-		UIController.instance.MostrarPanelJuego ();
+		UIController.instance.MostrarPanelContinuar ();
 	}
 
 }
