@@ -14,7 +14,9 @@ public class DataService  {
 	public DataService(string DatabaseName){
 		if (instance == null) {
 			instance = this;
-		} 
+		} else {
+			instance = this;
+		}
 
 #if UNITY_EDITOR
             var dbPath = string.Format(@"Assets/StreamingAssets/{0}", DatabaseName);

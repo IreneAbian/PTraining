@@ -1,28 +1,27 @@
 using SQLite4Unity3d;
+using UnityEngine;
 
 public class PlayerDAO{
 
-	SQLiteConnection _connection;
-
-	public PlayerDAO(SQLiteConnection _connection){
-		this._connection = _connection;
-	}
-
-	public int ReadGold(){
-		Player player = _connection.Table<Player>().First();
-		return player.Gold;
-	}
-
 	public void UpdateGold(int newGold){
-		_connection.Execute("Update Player set Gold = ?", newGold);
-
+		DataService.instance._connection.Execute("Update Player set Gold = ?", newGold);
 	}
 
 	public Player ReadPlayer(){
-		return _connection.Table<Player>().First();
+		Debug.Log("Instance: "+DataService.instance);
+		Player player = DataService.instance._connection.Table<Player> ().FirstOrDefault();
+		Debug.Log (player);
+		return player;
 	}
 
 	public void DeletePlayer(){
-		_connection.Execute("Delete * from Player");
+		DataService.instance._connection.DeleteAll<Player>();
+	}
+
+	public void CrearJugador(string nombre){
+		Player player = new Player ();
+		player.Name = nombre;
+		player.Gold = 0;
+		DataService.instance._connection.Insert(player);
 	}
 }
