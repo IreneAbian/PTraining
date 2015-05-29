@@ -34,6 +34,19 @@ public class GameController : MonoBehaviour {
 
 	public void OcultarMapa(){
 		mapa.SetActive (false);
+		jugador.SetActive (false);
+	}
+
+	public void RetrocederJugador(){
+		jugador.transform.position = new Vector3(jugador.transform.position.x, jugador.transform.position.y-0.25f);
+	}
+
+	public void ImpedirMovimientoJugador(){
+		jugador.GetComponent<PlayerMovement> ().enabled = false;
+	}
+
+	public void PermitirMovimientoJugador(){
+		jugador.GetComponent<PlayerMovement> ().enabled = true;
 	}
 
 }

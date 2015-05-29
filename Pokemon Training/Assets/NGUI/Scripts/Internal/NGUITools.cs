@@ -511,7 +511,7 @@ static public class NGUITools
 	{
 		if (obj != null)
 		{
-			if (Application.isEditor) UnityEngine.Object.DestroyImmediate(obj);
+			if (Application.isEditor) UnityEngine.Object.Destroy(obj);
 			else UnityEngine.Object.Destroy(obj);
 		}
 	}

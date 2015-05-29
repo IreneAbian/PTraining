@@ -24,6 +24,7 @@ public class UIController : MonoBehaviour {
 		EsconderPaneles ();
 		paneles [1].SetActive (true);
 		GameController.instance.MostrarMapa ();
+		GameController.instance.PermitirMovimientoJugador ();
 	}
 
 	public void EsconderPaneles(){
@@ -49,6 +50,20 @@ public class UIController : MonoBehaviour {
 		labelNombreDB.GetComponent<UILabel> ().text = "Nombre: "+ player.ReadPlayer ().Name;
 		PokemonOwnedDAO pokemon = new PokemonOwnedDAO ();
 		labelPokemon.GetComponent<UILabel>().text = "Pokemon: "+ pokemon.GetOwnedPokemon ().ToList().Count();
+	}
+
+	public void MostrarPanelMenu(){
+		paneles [3].SetActive (true);
+	}
+
+	public void MostrarPerfilJugador(){
+		EsconderPaneles ();
+		paneles [4].SetActive (true);
+	}
+
+	public void MostrarPanelLibreria(){
+		EsconderPaneles ();
+		paneles [5].SetActive (true);
 	}
 
 }
