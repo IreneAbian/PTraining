@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Linq;
 public class CrearJugador : MonoBehaviour {
 
 	public GameObject labelNombre;
@@ -10,5 +10,6 @@ public class CrearJugador : MonoBehaviour {
 		player.CrearJugador (labelNombre.GetComponent<UILabel> ().text);
 		UIController.instance.MostrarPanelContinuar ();
 	}
+
 
 }
