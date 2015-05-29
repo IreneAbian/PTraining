@@ -9,9 +9,11 @@ public class AbrirMenu : MonoBehaviour {
 		if (pulsado) {
 			pulsado = false;
 			UIController.instance.MostrarPanelJuego();
+			GameController.instance.ImpedirMovimientoJugador();
 		} else {
 			pulsado = true;
 			UIController.instance.MostrarPanelMenu();
+			GameController.instance.ImpedirMovimientoJugador();
 		}
 	}
 }

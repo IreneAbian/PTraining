@@ -66,4 +66,9 @@ public class UIController : MonoBehaviour {
 		paneles [5].SetActive (true);
 	}
 
+	public void MostrarPanelZonaBatalla(){
+		EsconderPaneles ();
+		paneles [6].SetActive (true);
+	}
+
 }
