@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour {
 		} else {
 			UIController.instance.MostrarPanelContinuar();
 		}
+
 	}
 
 	public void MostrarMapa(){

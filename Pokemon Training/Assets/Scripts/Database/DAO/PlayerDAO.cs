@@ -10,7 +10,6 @@ public class PlayerDAO{
 	public Player ReadPlayer(){
 		Debug.Log("Instance: "+DataService.instance);
 		Player player = DataService.instance._connection.Table<Player> ().FirstOrDefault();
-		Debug.Log (player);
 		return player;
 	}
 

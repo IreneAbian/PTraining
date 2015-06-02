@@ -7,4 +7,5 @@ public class RetrocederAMapa : MonoBehaviour {
 		UIController.instance.MostrarPanelJuego ();
 		GameController.instance.RetrocederJugador ();
 	}
+
 }

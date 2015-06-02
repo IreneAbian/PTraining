@@ -5,6 +5,7 @@ public class PokemonOwned {
 	[PrimaryKey]
 	public int Id{ get; set; }
 	public int IdBasic{ get; set; }
+	public int HpTotal{ get; set; }
 	public int Hp{ get; set; }
 	public int Attack{ get; set; }
 	public int Defense{ get; set; }

@@ -9,9 +9,8 @@ public class Serializer : MonoBehaviour {
 		imagen = new Texture2D(0,0);
 		PokemonBasicDAO pokm = new PokemonBasicDAO ();
 		Texture2D texture = Resources.Load("Pokemon/001") as Texture2D;
-		pokm.InsertPokemon (001, Serialize (texture));
-		real = pokm.GetPokemonSprite (001);
-
+//		pokm.InsertPokemon (001, Serialize (texture));
+//		real = pokm.GetPokemonSprite (001);
 	}
 
 	public byte[] Serialize(Texture2D file){

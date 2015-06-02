@@ -1,6 +1,7 @@
 using SQLite4Unity3d;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class PokemonOwnedDAO{
 	
@@ -21,6 +22,7 @@ public class PokemonOwnedDAO{
 		PokemonOwned pokemonOwned = new PokemonOwned ();
 		pokemonOwned.IdBasic = basicId;
 		pokemonOwned.Hp = pokemonBasic.BasicHp;
+		pokemonOwned.HpTotal = pokemonBasic.BasicHp;
 		pokemonOwned.Attack = pokemonBasic.BasicAttack;
 		pokemonOwned.Defense = pokemonBasic.BasicDefense;
 		pokemonOwned.SpecialAttack = pokemonBasic.BasicSpecialAttack;
@@ -44,6 +46,8 @@ public class PokemonOwnedDAO{
 			break;
 		}
 		pokemonOwned.InTeam = false;
+		PokemonOwnedDAO pkmdao = new PokemonOwnedDAO ();
+		pokemonOwned.Id = pkmdao.GetOwnedPokemon ().ToList().Count()+1;
 		DataService.instance._connection.Insert (pokemonOwned);
 
 	}
