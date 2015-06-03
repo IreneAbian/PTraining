@@ -19,8 +19,12 @@ public class MostrarDatosEquipoHospital : MonoBehaviour {
 		List<PokemonOwned> lista = pokmowned.GetEquippedPokemon ().ToList();
 		int hpACurar = 0;
 		for (int i = 0; i < lista.Count(); i++){
-			hpACurar += lista[i].HpTotal - lista[i].Hp;
+			int hpLeft = lista[i].HpTotal - lista[i].Hp;
+			Debug.Log(hpLeft);
+			hpACurar += hpLeft;
 		}
 		precio.GetComponent<UILabel> ().text = "Precio: " + hpACurar;
 	}
+
+
 }

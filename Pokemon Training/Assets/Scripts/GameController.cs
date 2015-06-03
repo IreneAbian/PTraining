@@ -25,7 +25,6 @@ public class GameController : MonoBehaviour {
 		} else {
 			UIController.instance.MostrarPanelContinuar();
 		}
-
 	}
 
 	public void MostrarMapa(){
@@ -49,5 +48,6 @@ public class GameController : MonoBehaviour {
 	public void PermitirMovimientoJugador(){
 		jugador.GetComponent<PlayerMovement> ().enabled = true;
 	}
+
 
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
+
 public class UIController : MonoBehaviour {
 
 	public List<GameObject> paneles;
@@ -85,4 +86,5 @@ public class UIController : MonoBehaviour {
 		EsconderPaneles ();
 		paneles [7].SetActive (true);
 	}
+	
 }
