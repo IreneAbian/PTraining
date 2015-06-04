@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class GameController : MonoBehaviour {
 
@@ -20,7 +22,7 @@ public class GameController : MonoBehaviour {
 
 		player = new PlayerDAO ();
 
-		if (player.ReadPlayer () == null) {
+		if (player.GetPlayer () == null) {
 			UIController.instance.MostrarPanelNuevoJugador ();
 		} else {
 			UIController.instance.MostrarPanelContinuar();
@@ -47,6 +49,30 @@ public class GameController : MonoBehaviour {
 
 	public void PermitirMovimientoJugador(){
 		jugador.GetComponent<PlayerMovement> ().enabled = true;
+	}
+
+	public bool PagarHospital(){
+		int precio = CalcularPrecioHospital ();
+		bool pagado = true;
+		PlayerDAO playerD = new PlayerDAO();
+		Player playerRead = playerD.GetPlayer();
+		if (precio > playerRead.Gold){
+			pagado = false;
+		} else {
+			player.UpdateGold(playerRead.Gold - precio);
+		}
+		return pagado;
+	}
+
+	public int CalcularPrecioHospital(){
+		PokemonOwnedDAO pokmowned = new PokemonOwnedDAO ();
+		List<PokemonOwned> lista = pokmowned.GetEquippedPokemon ().ToList();
+		int hpACurar = 0;
+		for (int i = 0; i < lista.Count(); i++){
+			int hpLeft = lista[i].HpTotal - lista[i].Hp;
+			hpACurar += hpLeft;
+		}
+		return hpACurar;
 	}
 
 

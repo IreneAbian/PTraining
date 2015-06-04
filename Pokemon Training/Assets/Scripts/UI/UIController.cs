@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
@@ -47,8 +47,8 @@ public class UIController : MonoBehaviour {
 	
 	public void MostrarDatosPantallaInicio(){
 		PlayerDAO player = new PlayerDAO ();
-		labelOro.GetComponent<UILabel> ().text = "Oro: "+ player.ReadPlayer ().Gold;
-		labelNombreDB.GetComponent<UILabel> ().text = "Nombre: "+ player.ReadPlayer ().Name;
+		labelOro.GetComponent<UILabel> ().text = "Oro: "+ player.GetPlayer ().Gold;
+		labelNombreDB.GetComponent<UILabel> ().text = "Nombre: "+ player.GetPlayer ().Name;
 		PokemonOwnedDAO pokemon = new PokemonOwnedDAO ();
 		labelPokemon.GetComponent<UILabel>().text = "Pokemon: "+ pokemon.GetOwnedPokemon ().ToList().Count();
 	}
@@ -72,19 +72,23 @@ public class UIController : MonoBehaviour {
 		paneles [6].SetActive (true);
 	}
 
-	public Sprite CargarImagen(int id){
-//		if (id < 10) {
-//			id = (int) "00" + id;
-//		} else if (id < 100) {
-//			id =(int) "0" + id;
-//		}
-		Sprite texture = Resources.Load("Pokemon/"+id) as Sprite;
-		return texture;
-	}
+//	public Sprite CargarImagen(int id){
+//		Sprite texture = Resources.Load("Pokemon/"+id) as Sprite;
+//		return texture;
+//	}
 
 	public void MostrarPanelHospital(){
 		EsconderPaneles ();
 		paneles [7].SetActive (true);
 	}
-	
+
+	public void MostrarPanelHospitalNoDinero(){
+		EsconderPaneles ();
+		paneles[8].SetActive(true);
+	}
+
+	public void MostrarPanelPosada(){
+		EsconderPaneles ();
+		paneles [9].SetActive (true);
+	}
 }

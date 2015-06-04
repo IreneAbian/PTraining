@@ -20,6 +20,11 @@ public class DetectarColliders : MonoBehaviour {
 				GameController.instance.ImpedirMovimientoJugador ();
 				GameController.instance.OcultarMapa ();
 				break;
+		case "ColliderPosada":
+			UIController.instance.MostrarPanelPosada ();
+			GameController.instance.ImpedirMovimientoJugador ();
+			GameController.instance.OcultarMapa ();
+			break;
 		}
 	
 	}

@@ -49,7 +49,6 @@ public class PokemonOwnedDAO{
 		PokemonOwnedDAO pkmdao = new PokemonOwnedDAO ();
 		pokemonOwned.Id = pkmdao.GetOwnedPokemon ().ToList().Count()+1;
 		DataService.instance._connection.Insert (pokemonOwned);
-
 	}
 
 	public void UpdatePokemon(int idPokemon, PokemonOwned newPokemon){
@@ -59,6 +58,17 @@ public class PokemonOwnedDAO{
 		DataService.instance._connection.Insert (newPokemon);
 	}
 
+	public void HealthPokemon(int idPokemon){
+		PokemonOwned pokemon = GetPokemon (idPokemon);
+		int hpTotal = pokemon.HpTotal;
+		DataService.instance._connection.Execute("Update PokemonOwned set Hp = ?", hpTotal);
+	}
+
+	public PokemonOwned GetPokemon(int id){
+		return 	DataService.instance._connection.Table<PokemonOwned> ().Where (x => x.Id == id).FirstOrDefault();
+
+	}
+
 	public bool EquipPokemon(int idPokemon){
 		bool equipped = true;
 		List<PokemonOwned> list = DataService.instance._connection.Table<PokemonOwned> ().Where (x => x.InTeam == true).ToList();
@@ -66,13 +76,13 @@ public class PokemonOwnedDAO{
 		if (equippedPokemons >= 3) {
 			equipped = false;
 		} else {
-			DataService.instance._connection.Execute("Update PokemonOwned set InTeam = true where Id =",idPokemon);
+			DataService.instance._connection.Execute("Update PokemonOwned set InTeam = 1 where Id = ?",idPokemon);
 		}
 		return equipped;
 
 	}
 
 	public void UnEquipPokemon(int idPokemon){
-		DataService.instance._connection.Execute("Update PokemonOwned set InTeam = false where Id =",idPokemon);
+		DataService.instance._connection.Execute("Update PokemonOwned set InTeam = 0 where Id = ?",idPokemon);
 	}
 }

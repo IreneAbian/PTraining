@@ -7,8 +7,7 @@ public class PlayerDAO{
 		DataService.instance._connection.Execute("Update Player set Gold = ?", newGold);
 	}
 
-	public Player ReadPlayer(){
-		Debug.Log("Instance: "+DataService.instance);
+	public Player GetPlayer(){
 		Player player = DataService.instance._connection.Table<Player> ().FirstOrDefault();
 		return player;
 	}

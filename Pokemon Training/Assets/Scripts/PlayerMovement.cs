@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour {
 	Rigidbody2D rb;
 	Animator anim;
 	private Vector2 touchOrigin = -Vector2.one;
+	public Vector2 movement;
+	
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +17,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector2 movement = Vector2.zero;
+		movement = Vector2.zero;
 
 		#if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
 
