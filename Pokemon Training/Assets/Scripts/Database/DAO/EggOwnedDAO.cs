@@ -28,7 +28,7 @@ public class EggOwnedDAO{
 		return egg;
 	}
 
-	public EggOwned ReadEquippedEgg(){
+	public EggOwned GetEquippedEgg(){
 		return DataService.instance._connection.Table<EggOwned> ().Where (x => x.Equipped == true).First();
 	}
 
@@ -45,10 +45,14 @@ public class EggOwnedDAO{
 	}
 
 	public void EquipEgg(int id){
-		if (ReadEquippedEgg() != null) {
-			ReadEquippedEgg().Equipped = false;
+		if (GetEquippedEgg() != null) {
+			GetEquippedEgg().Equipped = false;
 		}
 		DataService.instance._connection.Execute ("Update EggOwned set Equipped = true where id = ?", id);
+	}
+
+	public void DeleteAllEggs(){
+		DataService.instance._connection.Execute ("Delete from EggOwned");
 
 	}
 }

@@ -72,11 +72,6 @@ public class UIController : MonoBehaviour {
 		paneles [6].SetActive (true);
 	}
 
-//	public Sprite CargarImagen(int id){
-//		Sprite texture = Resources.Load("Pokemon/"+id) as Sprite;
-//		return texture;
-//	}
-
 	public void MostrarPanelHospital(){
 		EsconderPaneles ();
 		paneles [7].SetActive (true);

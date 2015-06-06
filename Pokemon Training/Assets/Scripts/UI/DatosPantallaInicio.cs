@@ -6,5 +6,6 @@ public class DatosPantallaInicio : MonoBehaviour {
 
 	void OnClick(){
 		UIController.instance.MostrarPanelJuego ();
+		GameController.instance.PermitirMovimientoJugador ();
 	}
 }

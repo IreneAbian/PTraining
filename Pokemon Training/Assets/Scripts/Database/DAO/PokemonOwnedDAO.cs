@@ -66,7 +66,6 @@ public class PokemonOwnedDAO{
 
 	public PokemonOwned GetPokemon(int id){
 		return 	DataService.instance._connection.Table<PokemonOwned> ().Where (x => x.Id == id).FirstOrDefault();
-
 	}
 
 	public bool EquipPokemon(int idPokemon){
@@ -84,5 +83,10 @@ public class PokemonOwnedDAO{
 
 	public void UnEquipPokemon(int idPokemon){
 		DataService.instance._connection.Execute("Update PokemonOwned set InTeam = 0 where Id = ?",idPokemon);
+	}
+
+	public void DeleteAllPokemon(){
+		DataService.instance._connection.DeleteAll<PokemonOwned> ();
+
 	}
 }

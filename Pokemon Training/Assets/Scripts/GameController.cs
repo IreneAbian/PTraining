@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour {
 		} else {
 			UIController.instance.MostrarPanelContinuar();
 		}
+		ImpedirMovimientoJugador ();
 	}
 
 	public void MostrarMapa(){
