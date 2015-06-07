@@ -78,7 +78,6 @@ public class PokemonOwnedDAO{
 			DataService.instance._connection.Execute("Update PokemonOwned set InTeam = 1 where Id = ?",idPokemon);
 		}
 		return equipped;
-
 	}
 
 	public void UnEquipPokemon(int idPokemon){
@@ -87,6 +86,7 @@ public class PokemonOwnedDAO{
 
 	public void DeleteAllPokemon(){
 		DataService.instance._connection.DeleteAll<PokemonOwned> ();
-
 	}
+
+
 }
