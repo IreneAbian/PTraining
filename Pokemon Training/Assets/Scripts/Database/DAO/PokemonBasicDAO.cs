@@ -22,8 +22,5 @@ public class PokemonBasicDAO{
 		return DataService.instance._connection.Table<PokemonBasic> ();
 	}
 
-	public PokemonBasic GetPokemonAleatorio(){
-		int num = Mathf.FloorToInt(Random.Range(1, GetAllPokemon().ToList().Count()));
-		return GetPokemon(num);
-	}
+
 }

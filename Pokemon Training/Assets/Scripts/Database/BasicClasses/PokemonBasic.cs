@@ -18,8 +18,6 @@ public class PokemonBasic {
 	public bool IsBasic{ get; set; }
 	public string Type{ get; set; }
 	public int Happyness{ get; set; }
-	public string SpriteImage{ get; set; }
-
 
 	public override string ToString ()
 	{

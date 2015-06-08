@@ -86,4 +86,43 @@ public class UIController : MonoBehaviour {
 		EsconderPaneles ();
 		paneles [9].SetActive (true);
 	}
+
+	public void MostrarPanelZonaBatallaElegida(int pokemonElegido){
+		EsconderPaneles ();
+		paneles [10].SetActive (true);
+		switch (pokemonElegido) {
+		case 1:
+			paneles[10].GetComponent<BatallaPrimerPokemon>().enabled = true;
+			break;
+		case 2:
+			paneles[10].GetComponent<BatallaSegundoPokemon>().enabled = true;
+			break;
+		case 3:
+			paneles[10].GetComponent<BatallaTercerPokemon>().enabled = true;
+			break;
+		}
+	}
+
+	public void MostrarPanelEquipo(){
+		EsconderPaneles ();
+		paneles [11].SetActive (true);
+	}
+
+	public void MostrarPanelDatosPokemon(int pokemonElegido){
+		EsconderPaneles ();
+		paneles [12].SetActive (true);
+		switch (pokemonElegido) {
+		case 1:
+			paneles[12].GetComponent<MostrarDatosPrimerPokemon>().enabled = true;
+			break;
+		case 2:
+			paneles[12].GetComponent<MostrarDatosSegundoPokemon>().enabled = true;
+			break;
+		case 3:
+			paneles[12].GetComponent<MostrarDatosTercerPokemon>().enabled = true;
+			break;
+		}
+	}
+
+
 }

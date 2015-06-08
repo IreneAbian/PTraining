@@ -3,13 +3,9 @@ using System.Collections;
 
 public class BatallaSegundoPokemon : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+	public GameObject texto;
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public GameObject sprite1;
+	public GameObject sprite2;
+
 }

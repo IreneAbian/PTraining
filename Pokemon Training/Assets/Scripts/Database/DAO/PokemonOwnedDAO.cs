@@ -31,20 +31,7 @@ public class PokemonOwnedDAO{
 		pokemonOwned.Happyness = 100;
 		pokemonOwned.CurrentExperience = 0;
 		pokemonOwned.Level = 5;
-
-		switch (pokemonBasic.GrowthRate) {
-		case "Fast":
-			pokemonOwned.ExperienceNeeded = (4*pokemonOwned.Level*pokemonOwned.Level*pokemonOwned.Level)/5;
-			break;
-
-		case "Medium":
-			pokemonOwned.ExperienceNeeded = pokemonOwned.Level*pokemonOwned.Level*pokemonOwned.Level;
-			break;
-
-		case "Slow":
-			pokemonOwned.ExperienceNeeded = (5*pokemonOwned.Level*pokemonOwned.Level*pokemonOwned.Level)/4;
-			break;
-		}
+		pokemonOwned.ExperienceNeeded = GameController.instance.CalcularExperienciaNecesaria (pokemonOwned);
 		pokemonOwned.InTeam = false;
 		PokemonOwnedDAO pkmdao = new PokemonOwnedDAO ();
 		pokemonOwned.Id = pkmdao.GetOwnedPokemon ().ToList().Count()+1;
@@ -56,6 +43,10 @@ public class PokemonOwnedDAO{
 		DataService.instance._connection.Delete (oldPokemon);
 		newPokemon.Id = oldPokemon.Id;
 		DataService.instance._connection.Insert (newPokemon);
+	}
+
+	public void UpdatePokemon(PokemonOwned pkmOwned){
+		DataService.instance._connection.Update (pkmOwned);
 	}
 
 	public void HealthPokemon(int idPokemon){
@@ -88,5 +79,23 @@ public class PokemonOwnedDAO{
 		DataService.instance._connection.DeleteAll<PokemonOwned> ();
 	}
 
+	public PokemonOwned GenerarAleatorio(){
+		PokemonBasicDAO pkmBasic = new PokemonBasicDAO ();
+		int num = Mathf.FloorToInt(Random.Range(1, pkmBasic.GetAllPokemon().ToList().Count()));
+		PokemonBasic pokemonBasic = pkmBasic.GetPokemon (7);
+		PokemonOwned pokemonOwned = new PokemonOwned ();
+		pokemonOwned.Hp = pokemonBasic.BasicHp;
+		pokemonOwned.HpTotal = pokemonBasic.BasicHp;
+		pokemonOwned.Attack = pokemonBasic.BasicAttack;
+		pokemonOwned.Defense = pokemonBasic.BasicDefense;
+		pokemonOwned.SpecialAttack = pokemonBasic.BasicSpecialAttack;
+		pokemonOwned.SpecialDefense = pokemonBasic.BasicSpecialDefense;
+		pokemonOwned.Speed = pokemonBasic.BasicSpeed;
+		pokemonOwned.Happyness = 100;
+		pokemonOwned.CurrentExperience = 0;
+		pokemonOwned.Level = 5;
+		pokemonOwned.IdBasic = pokemonBasic.Id;
+		return pokemonOwned;
+	}
 
 }

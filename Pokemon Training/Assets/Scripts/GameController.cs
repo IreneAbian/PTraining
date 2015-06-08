@@ -76,5 +76,25 @@ public class GameController : MonoBehaviour {
 		return hpACurar;
 	}
 
+	public int CalcularExperienciaNecesaria(PokemonOwned pokemonOwned){
+		PokemonBasicDAO pkmBasic = new PokemonBasicDAO ();
+		int exp = 0;
+		switch (pkmBasic.GetPokemon(pokemonOwned.IdBasic).GrowthRate) {
+		case "Fast":
+			exp = Mathf.FloorToInt((4*pokemonOwned.Level*pokemonOwned.Level*pokemonOwned.Level)/5);
+			break;
+			
+		case "Medium":
+			exp = Mathf.FloorToInt(pokemonOwned.Level*pokemonOwned.Level*pokemonOwned.Level);
+			break;
+			
+		case "Slow":
+			exp = Mathf.FloorToInt((5*pokemonOwned.Level*pokemonOwned.Level*pokemonOwned.Level)/4);
+			break;
+		}
+
+		return exp;
+	}
+
 
 }
