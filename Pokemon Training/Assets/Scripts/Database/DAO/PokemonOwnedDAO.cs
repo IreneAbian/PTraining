@@ -48,6 +48,14 @@ public class PokemonOwnedDAO{
 	public void UpdatePokemon(PokemonOwned pkmOwned){
 		DataService.instance._connection.Update (pkmOwned);
 	}
+	public void UpdatePokemonHealth(int id, int health){
+		if (health >= 0) {
+			DataService.instance._connection.Execute ("Update PokemonOwned set Hp = " + health + " where Id = ?", id);
+		} else {
+			DataService.instance._connection.Execute ("Update PokemonOwned set Hp = 0 where Id = ?", id);
+
+		}
+	}
 
 	public void HealthPokemon(int idPokemon){
 		PokemonOwned pokemon = GetPokemon (idPokemon);
@@ -82,7 +90,7 @@ public class PokemonOwnedDAO{
 	public PokemonOwned GenerarAleatorio(){
 		PokemonBasicDAO pkmBasic = new PokemonBasicDAO ();
 		int num = Mathf.FloorToInt(Random.Range(1, pkmBasic.GetAllPokemon().ToList().Count()));
-		PokemonBasic pokemonBasic = pkmBasic.GetPokemon (7);
+		PokemonBasic pokemonBasic = pkmBasic.GetPokemon (num);
 		PokemonOwned pokemonOwned = new PokemonOwned ();
 		pokemonOwned.Hp = pokemonBasic.BasicHp;
 		pokemonOwned.HpTotal = pokemonBasic.BasicHp;

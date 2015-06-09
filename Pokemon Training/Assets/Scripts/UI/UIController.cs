@@ -93,12 +93,15 @@ public class UIController : MonoBehaviour {
 		switch (pokemonElegido) {
 		case 1:
 			paneles[10].GetComponent<BatallaPrimerPokemon>().enabled = true;
+			paneles[10].GetComponent<BatallaPrimerPokemon>().GenerarBatalla();
 			break;
 		case 2:
 			paneles[10].GetComponent<BatallaSegundoPokemon>().enabled = true;
+			paneles[10].GetComponent<BatallaSegundoPokemon>().GenerarBatalla();
 			break;
 		case 3:
 			paneles[10].GetComponent<BatallaTercerPokemon>().enabled = true;
+			paneles[10].GetComponent<BatallaTercerPokemon>().GenerarBatalla();
 			break;
 		}
 	}

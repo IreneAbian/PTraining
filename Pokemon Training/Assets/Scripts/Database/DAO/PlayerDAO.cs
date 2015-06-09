@@ -4,7 +4,10 @@ using UnityEngine;
 public class PlayerDAO{
 
 	public void UpdateGold(int newGold){
-		DataService.instance._connection.Execute("Update Player set Gold = ?", newGold);
+        int goldResultado = GetPlayer().Gold - newGold;
+        if (goldResultado > 0){
+		    DataService.instance._connection.Execute("Update Player set Gold = ?", newGold);
+        }
 	}
 
 	public Player GetPlayer(){
