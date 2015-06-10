@@ -127,5 +127,10 @@ public class UIController : MonoBehaviour {
 		}
 	}
 
+	public void MostrarPanelSacarPokemon(){
+		EsconderPaneles ();
+		paneles [13].SetActive (true);
+	}
+
 
 }
