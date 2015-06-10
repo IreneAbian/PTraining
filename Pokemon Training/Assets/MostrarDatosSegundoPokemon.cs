@@ -1,10 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class MostrarDatosSegundoPokemon : MonoBehaviour {
 
-	void Start () {
+	public GameObject nombre;
+	public GameObject nivel;
+	public GameObject descripcion;
+	public GameObject stats;
+	public GameObject sprite;
 	
+	void Update () {
+		PokemonOwnedDAO pkmOwned = new PokemonOwnedDAO ();
+		PokemonBasicDAO pkmBasic = new PokemonBasicDAO ();
+		List<PokemonOwned> lista = pkmOwned.GetEquippedPokemon ().ToList ();
+		if (lista.Count () > 1) {
+			nivel.GetComponent<UILabel>().text = "Nvl: "+lista[1].Level;
+			nombre.GetComponent<UILabel>().text = pkmBasic.GetPokemon(lista[1].IdBasic).Name;
+			descripcion.GetComponent<UILabel>().text = pkmBasic.GetPokemon(lista[1].IdBasic).Description;
+			UILabel datos = stats.GetComponent<UILabel>();
+			datos.text = "";
+			datos.text += "\nHp: "+lista[1].Hp+"/"+lista[1].HpTotal;
+			datos.text += "\nAtaque: "+lista[1].Attack;
+			datos.text += "\nDefensa: "+lista[1].Defense;
+			datos.text += "\nAtaque especial: "+lista[1].SpecialAttack;
+			datos.text += "\nDefensa especial: "+lista[1].SpecialDefense;
+			datos.text += "\nVelocidad: "+lista[1].Speed;
+			datos.text += "\nAguante: "+lista[1].Happyness;
+			datos.text += "\nExperiencia: "+lista[1].CurrentExperience+"/"+lista[1].ExperienceNeeded;		
+		}
+		sprite.GetComponent<UISprite> ().spriteName = lista [1].IdBasic + "";
 	}
+
 
 }

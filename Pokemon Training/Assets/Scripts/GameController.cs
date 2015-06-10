@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour {
 	void Awake(){
 		DataService ds = new DataService ("PT");
 	}
+
 	void Start(){
 		if (instance == null) {
 			instance = this;
@@ -73,12 +74,13 @@ public class GameController : MonoBehaviour {
 			int hpLeft = lista[i].HpTotal - lista[i].Hp;
 			hpACurar += hpLeft;
 		}
-		return hpACurar;
+		return Mathf.FloorToInt(hpACurar/5);
 	}
 
 	public int CalcularExperienciaNecesaria(PokemonOwned pokemonOwned){
 		PokemonBasicDAO pkmBasic = new PokemonBasicDAO ();
 		int exp = 0;
+
 		switch (pkmBasic.GetPokemon(pokemonOwned.IdBasic).GrowthRate) {
 		case "Fast":
 			exp = Mathf.FloorToInt((4*pokemonOwned.Level*pokemonOwned.Level*pokemonOwned.Level)/5);
