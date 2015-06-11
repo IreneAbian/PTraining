@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class EggOwnedDAO{
-	
 
 	public EggOwned CreateEggOwned(string category){
 		int[] options = new int[10]; 
@@ -33,7 +32,8 @@ public class EggOwnedDAO{
 	}
 
 	public IEnumerable<EggOwned> ReadEggsOwned(){
-		return DataService.instance._connection.Table<EggOwned> ();
+		return DataService.instance._connection.Table<EggOwned> ().Where (x => x.Equipped == false);
+
 	}
 
 	public void DeleteEggOwned(int id){

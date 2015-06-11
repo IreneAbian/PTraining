@@ -3,13 +3,18 @@ using System.Collections;
 
 public class SacarPokemon : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    void OnClick(){
+        PokemonOwnedDAO pkmOwned = new PokemonOwnedDAO();
+        string nameObject = transform.parent.name;
+        int idPokemon = int.Parse(nameObject.Substring(nameObject.Length - 3));
+        if (pkmOwned.EquipPokemon(idPokemon))
+        {
+            UIController.instance.MostrarPanelPosada();
+        }
+        else
+        {
+            Debug.Log("Por alguna razón no puedes sacar al pokemon");
+        }
+
+    }
 }

@@ -129,8 +129,34 @@ public class UIController : MonoBehaviour {
 
 	public void MostrarPanelSacarPokemon(){
 		EsconderPaneles ();
+        paneles[13].GetComponent<MostrarDatosSacarPokemon>().actualizarLista = true;
 		paneles [13].SetActive (true);
 	}
 
+    public void MostrarPanelDatosInventario(){
+        EsconderPaneles();
+        paneles[14].SetActive(true);
+        MostrarInventarioItems();
+    }
 
+    public void MostrarInventarioHuevos(){
+        paneles[14].GetComponent<MostrarDatosInventario>().mostrarItems = false;
+    }
+
+    public void MostrarInventarioItems(){
+        paneles[14].GetComponent<MostrarDatosInventario>().mostrarItems = true;
+    }
+
+    public void MostrarPanelTienda(){
+        EsconderPaneles();
+        paneles[15].SetActive(true);
+    }
+
+    public void MostrarTiendaItems(){
+    
+    }
+
+    public void MostrarTiendaHuevos(){
+
+    }
 }

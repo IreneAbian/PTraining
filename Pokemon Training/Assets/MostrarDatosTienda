@@ -1,0 +1,40 @@
+using UnityEngine;
+using System.Collections;
+using System.Linq;
+using System.Collections.Generic;
+
+public class MostrarDatosTienda : MonoBehaviour {
+
+	public GameObject prefabTiendaItem;
+	public GameObject prefabTiendaEgg;
+	public bool mostrarItems;
+	public GameObject parentGrid;
+
+	void Start(){
+		mostrarItems = true;
+	}
+
+	void Update(){
+
+		if (mostrarItems){
+			ItemsBasicDAO itemsBasic = new ItemsBasicDAO();
+			List<ItemsBasic> lista = itemsBasic.GetItemsBasic().ToList();
+			for (int i = 0; i < lista.Count(); i++){
+				GameObject item = Instantiate(prefabTiendaItem) as GameObject;
+				item.transform.name = "Item"+lista[i].Name;
+				item.GetComponentInChildren<UILabel>().text = lista[i].Name+" Precio: "+lista[i].Price;
+				item.transform.parent = parentGrid;
+			}
+		} else {
+			EggBasicDAO eggBasic = new EggBasicDAO();
+			List<EggOwned> lista = eggOwned.ReadEggsOwned().ToList();
+			for (int i = 0; i < lista.Count(); i++){
+				GameObject egg = Instantiate(prefabOwnedEgg) as GameObject;
+				egg.transform.name = "Egg"+lista[i].Id;
+				egg.GetComponentInChildren<UILabel>().text = "Huevo " + lista[i].Category;
+				egg.transform.parent = parentGrid;
+			}
+		}
+	}
+
+}

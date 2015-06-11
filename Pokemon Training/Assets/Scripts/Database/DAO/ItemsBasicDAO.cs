@@ -8,7 +8,7 @@ public class ItemsBasicDAO{
 	}
 
 	public ItemsBasic GetItemBasic(string name){
-		return DataService.instance._connection.Table<ItemsBasic> ().Where (x => x.Name == name).First();
+		return DataService.instance._connection.Table<ItemsBasic> ().Where (x => x.Name == name).FirstOrDefault();
 	}
 
 }
