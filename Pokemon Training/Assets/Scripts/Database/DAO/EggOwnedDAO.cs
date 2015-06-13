@@ -43,7 +43,7 @@ public class EggOwnedDAO{
 		return DataService.instance._connection.Table<EggOwned> ().Where (x => x.Equipped == true).FirstOrDefault();
 	}
 
-	public IEnumerable<EggOwned> ReadEggsOwned(){
+	public IEnumerable<EggOwned> GetNotEquippedEggs(){
 		return DataService.instance._connection.Table<EggOwned> ().Where (x => x.Equipped == false);
 
 	}
@@ -52,65 +52,59 @@ public class EggOwnedDAO{
 		DataService.instance._connection.Execute ("Delete from EggOwned where Id = ?", id);
 	}
 
-	public void AumentarCiclo(int idEgg){
+	public void AumentarCiclo(){
 		EggOwned eggOwned = GetEquippedEgg ();
-		int cycles = eggOwned.CurrentCycles++;
-		if (cycles >= eggOwned.TotalCycles) {
-			PokemonOwnedDAO pkmOwned = new PokemonOwnedDAO();
-			int random = Random.Range(0, 10);
-			switch (random){
-			case 0: 
-				pkmOwned.CreatePokemonOwned(eggOwned.Option1);
-				break;
-			case 1: 
-				pkmOwned.CreatePokemonOwned(eggOwned.Option2);
-
-				break;
-			case 2: 
-				pkmOwned.CreatePokemonOwned(eggOwned.Option3);
-
-				break;
-			case 3: 
-				pkmOwned.CreatePokemonOwned(eggOwned.Option4);
-
+		int id = eggOwned.Id;
+		if (eggOwned != null) {
+			int cycles = eggOwned.CurrentCycles++;
+			Debug.Log ("Cicles: " + eggOwned.CurrentCycles);
+			if (cycles < eggOwned.TotalCycles) {
+				DataService.instance._connection.Execute ("Update EggOwned set CurrentCycles = ? where Id = ?", cycles, id);
+			} else {
+				PokemonOwnedDAO pkmOwned = new PokemonOwnedDAO ();
+				int random = Random.Range (0, 10);
+				switch (random) {
+				case 0: 
+					pkmOwned.CreatePokemonOwned (eggOwned.Option1);
 					break;
-			case 4: 
-				pkmOwned.CreatePokemonOwned(eggOwned.Option5);
-
+				case 1: 
+					pkmOwned.CreatePokemonOwned (eggOwned.Option2);
 					break;
-			case 5: 
-				pkmOwned.CreatePokemonOwned(eggOwned.Option6);
-
+				case 2: 
+					pkmOwned.CreatePokemonOwned (eggOwned.Option3);
 					break;
-			case 6: 
-				pkmOwned.CreatePokemonOwned(eggOwned.Option7);
-
+				case 3: 
+					pkmOwned.CreatePokemonOwned (eggOwned.Option4);
 					break;
-			case 7: 
-				pkmOwned.CreatePokemonOwned(eggOwned.Option8);
-
+				case 4: 
+					pkmOwned.CreatePokemonOwned (eggOwned.Option5);
 					break;
-			case 8:
-				pkmOwned.CreatePokemonOwned(eggOwned.Option9);
-				break;
-			case 9:
-			case 10:
-				pkmOwned.CreatePokemonOwned(eggOwned.Option10);
-				break;
-
+				case 5: 
+					pkmOwned.CreatePokemonOwned (eggOwned.Option6);
+					break;
+				case 6: 
+					pkmOwned.CreatePokemonOwned (eggOwned.Option7);
+					break;
+				case 7: 
+					pkmOwned.CreatePokemonOwned (eggOwned.Option8);
+					break;
+				case 8:
+					pkmOwned.CreatePokemonOwned (eggOwned.Option9);
+					break;
+				case 9:
+					pkmOwned.CreatePokemonOwned (eggOwned.Option10);
+					break;
+				}
+				DeleteEggOwned (eggOwned.Id);
 			}
-			DeleteEggOwned(idEgg);
-		} else {
-			DataService.instance._connection.Execute ("Update EggOwned set CurrentCycles = " + cycles + " where Id = ?", idEgg);
 		}
-
 	}
 
 	public void EquipEgg(int id){
 		if (GetEquippedEgg() != null) {
 			GetEquippedEgg().Equipped = false;
 		}
-		DataService.instance._connection.Execute ("Update EggOwned set Equipped = true where Id = ?", id);
+		DataService.instance._connection.Execute ("Update EggOwned set Equipped = 1 where Id = ?", id);
 	}
 
 	public void DeleteAllEggs(){

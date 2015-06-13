@@ -22,4 +22,9 @@ public class ItemsOwnedDAO{
 	public void DeleteAllItems(){
 		DataService.instance._connection.DeleteAll<ItemsOwned>();
 	}
+
+	public ItemsOwned GetItemOwned(int id){
+		return DataService.instance._connection.Table<ItemsOwned> ().Where (x => x.Id == id).FirstOrDefault();
+
+	}
 }

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AbrirMenu : MonoBehaviour {
 
-	bool pulsado;
+	public bool pulsado;
 
 	void OnClick(){
 		if (pulsado) {

@@ -9,7 +9,7 @@ public class MostrarPerfilJugador : MonoBehaviour {
 	public GameObject labelPokemon;
 	public GameObject labelHuevos;
 
-	void Start(){
+	void Update(){
 		PlayerDAO player = new PlayerDAO ();
 		PokemonOwnedDAO pk = new PokemonOwnedDAO ();
 		EggOwnedDAO egg = new EggOwnedDAO ();
@@ -17,7 +17,7 @@ public class MostrarPerfilJugador : MonoBehaviour {
 		labelNombre.GetComponent<UILabel>().text = "Perfil de " + p.Name;
 		labelOro.GetComponent<UILabel>().text = "Oro: " + p.Gold;
 		labelPokemon.GetComponent<UILabel> ().text = "Pokemon: " + pk.GetOwnedPokemon ().ToList().Count();
-		labelHuevos.GetComponent<UILabel> ().text = "Huevos: " + egg.ReadEggsOwned ().ToList().Count();
+		labelHuevos.GetComponent<UILabel> ().text = "Huevos: " + egg.GetNotEquippedEggs ().ToList().Count();
 	}
 
 	void OnClick(){

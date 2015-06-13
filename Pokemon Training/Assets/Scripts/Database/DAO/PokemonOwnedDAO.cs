@@ -60,7 +60,7 @@ public class PokemonOwnedDAO{
 	public void HealthPokemon(int idPokemon){
 		PokemonOwned pokemon = GetPokemon (idPokemon);
 		int hpTotal = pokemon.HpTotal;
-		DataService.instance._connection.Execute("Update PokemonOwned set Hp = ?", hpTotal);
+		DataService.instance._connection.Execute("Update PokemonOwned set Hp = ? where Id = ?", hpTotal, idPokemon);
 	}
 
 	public PokemonOwned GetPokemon(int id){
