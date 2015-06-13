@@ -32,13 +32,11 @@ public class MostrarDatosZonaBatalla : MonoBehaviour {
 		} else if (listPokemon.Count () == 2) {
 
             int resultFirst = ((listPokemon[0].Hp * 100) / listPokemon[0].HpTotal);
-			Debug.Log(resultFirst);
 			float amountFirst = resultFirst / 100;
 			pokemon1.GetComponent<UISprite> ().spriteName = (listPokemon [0].IdBasic) + "";
 			PokemonBasic basico = pkmBasic.GetPokemon(listPokemon[0].IdBasic);
 			primerNombre.GetComponent<UILabel>().text = basico.Name+" Nvl: "+listPokemon[0].Level;
             primeraProgressBar.GetComponent<UISprite>().fillAmount = amountFirst;
-			Debug.Log("Amount first_ "+amountFirst+" result without varchar "+resultFirst / 100);
 
             int resultSecond = ((listPokemon[1].Hp * 100) / listPokemon[1].HpTotal);
 			float amountSecond = resultSecond / 100;
@@ -47,7 +45,6 @@ public class MostrarDatosZonaBatalla : MonoBehaviour {
 			PokemonBasic segundoBasico = pkmBasic.GetPokemon(listPokemon[1].IdBasic);
 			segundoNombre.GetComponent<UILabel>().text = segundoBasico.Name+" Nvl: "+listPokemon[1].Level;
             segundaProgressBar.GetComponent<UISprite>().fillAmount = amountSecond;
-			Debug.Log(amountSecond);
 
 		} else if (listPokemon.Count () == 3) {
 

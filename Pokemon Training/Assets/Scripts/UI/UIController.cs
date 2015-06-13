@@ -11,6 +11,8 @@ public class UIController : MonoBehaviour {
 	public GameObject labelOro;
 	public GameObject labelPokemon;
 
+	public GameObject labelMensaje;
+
 	public static UIController instance = null;
 
 	void Start(){
@@ -19,6 +21,9 @@ public class UIController : MonoBehaviour {
 		} else {
 			Destroy(instance);
 		}
+
+		EggOwnedDAO egg = new EggOwnedDAO ();
+		egg.CreateEggOwned ("Fuego");
 	}
 
 	public void MostrarPanelJuego(){
@@ -77,9 +82,10 @@ public class UIController : MonoBehaviour {
 		paneles [7].SetActive (true);
 	}
 
-	public void MostrarPanelHospitalNoDinero(){
+	public void MostrarPanelMensaje(string mensaje){
 		EsconderPaneles ();
 		paneles[8].SetActive(true);
+		labelMensaje.GetComponent<UILabel> ().text = mensaje;
 	}
 
 	public void MostrarPanelPosada(){
@@ -124,6 +130,10 @@ public class UIController : MonoBehaviour {
 		case 3:
 			paneles[12].GetComponent<MostrarDatosTercerPokemon>().enabled = true;
 			break;
+		case 4:
+			paneles[12].GetComponent<MostrarDatosHuevo>().enabled = true;
+			break;
+
 		}
 	}
 
@@ -141,22 +151,34 @@ public class UIController : MonoBehaviour {
 
     public void MostrarInventarioHuevos(){
         paneles[14].GetComponent<MostrarDatosInventario>().mostrarItems = false;
+		paneles[14].GetComponent<MostrarDatosInventario>().actualizarInventario = true;
     }
 
     public void MostrarInventarioItems(){
         paneles[14].GetComponent<MostrarDatosInventario>().mostrarItems = true;
+		paneles[14].GetComponent<MostrarDatosInventario>().actualizarInventario = true;
     }
 
     public void MostrarPanelTienda(){
         EsconderPaneles();
         paneles[15].SetActive(true);
+		MostrarTiendaItems ();
     }
 
     public void MostrarTiendaItems(){
-    
-    }
+		paneles[15].GetComponent<MostrarDatosTienda>().mostrarItems = true;
+		paneles[15].GetComponent<MostrarDatosTienda>().actualizarTienda = true;
+	}
 
     public void MostrarTiendaHuevos(){
-
+		paneles[15].GetComponent<MostrarDatosTienda>().mostrarItems = false;
+		paneles[15].GetComponent<MostrarDatosTienda>().actualizarTienda = true;
     }
+
+	public void MostrarPanelZonaEntrenamiento(){
+		EsconderPaneles ();
+		paneles [16].SetActive (true);
+	}
+
+
 }

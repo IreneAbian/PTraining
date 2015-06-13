@@ -16,6 +16,10 @@ public class ClickMostrarDatosPokemon : MonoBehaviour {
 		case "Pokemon002":
 			UIController.instance.MostrarPanelDatosPokemon(3);
 			break;
+		case "Huevo":
+			UIController.instance.MostrarPanelDatosPokemon(4);
+			break;
 		}
+
 	}
 }

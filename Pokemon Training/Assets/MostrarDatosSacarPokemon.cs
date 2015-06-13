@@ -17,6 +17,11 @@ public class MostrarDatosSacarPokemon : MonoBehaviour {
 	void Update(){
 
 		if (actualizarLista){
+		int childs = parentGrid.transform.childCount;
+		for (int i = 0; i < childs; i++){
+			Destroy(parentGrid.transform.GetChild(i).gameObject);
+		}
+
         PokemonOwnedDAO pkmOwned = new PokemonOwnedDAO();
         PokemonBasicDAO pkmBasic = new PokemonBasicDAO();
         List<PokemonOwned> lista = pkmOwned.GetNotEquippedPokemon().ToList();
@@ -24,12 +29,13 @@ public class MostrarDatosSacarPokemon : MonoBehaviour {
         for (int i = 0; i < lista.Count(); i++){
         	GameObject pokemon = Instantiate(prefabSacarPokemon) as GameObject;
         	pokemon.transform.name = "Pokemon"+lista[i].Id;
-        	//pokemon.GetComponentInChildren<UISprite>().spriteName = lista[i].IdBasic+"";
+        	pokemon.GetComponentInChildren<UISprite>().spriteName = lista[i].IdBasic+"";
         	PokemonBasic basic = pkmBasic.GetPokemon(lista[i].IdBasic);
         	pokemon.GetComponentInChildren<UILabel>().text = basic.Name+" Nivel "+lista[i].Level;
         	pokemon.transform.parent = parentGrid.transform;
-
+			pokemon.transform.localScale = new Vector3(1,1,1);
         }
+		parentGrid.GetComponent<UIGrid>().repositionNow = true;
 		actualizarLista = false;
 		}
 	}

@@ -8,6 +8,8 @@ public class MostrarDatosEquipo : MonoBehaviour {
 	public GameObject primerNombre;
 	public GameObject segundoNombre;
 	public GameObject tercerNombre;
+
+	public GameObject huevo;
 	
 	public GameObject pokemon1;
 	public GameObject pokemon2;
@@ -17,6 +19,7 @@ public class MostrarDatosEquipo : MonoBehaviour {
 	void Start(){
 		PokemonOwnedDAO pkmOwned = new PokemonOwnedDAO ();
 		PokemonBasicDAO pkmBasic = new PokemonBasicDAO ();
+		EggOwnedDAO eggOwned = new EggOwnedDAO ();
 		List<PokemonOwned> listPokemon = pkmOwned.GetEquippedPokemon ().ToList();
 		if (listPokemon.Count () == 1) {
 			
@@ -49,6 +52,9 @@ public class MostrarDatosEquipo : MonoBehaviour {
 			tercerNombre.GetComponent<UILabel>().text = tercerBasico.Name+" Nvl: "+listPokemon[2].Level;
 			
 		} 
-		
+
+		if (eggOwned.GetEquippedEgg() != null) {
+			huevo.GetComponent<UILabel>().text ="Huevo "+ eggOwned.GetEquippedEgg().Category;
+		}
 	}
 }

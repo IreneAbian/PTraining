@@ -57,11 +57,10 @@ public class GameController : MonoBehaviour {
 		int precio = CalcularPrecioHospital ();
 		bool pagado = true;
 		PlayerDAO playerD = new PlayerDAO();
-		Player playerRead = playerD.GetPlayer();
-		if (precio > playerRead.Gold){
+		if (precio > playerD.GetPlayer().Gold){
 			pagado = false;
 		} else {
-			player.UpdateGold(playerRead.Gold - precio);
+			player.UpdateGold(playerD.GetPlayer().Gold - precio);
 		}
 		return pagado;
 	}

@@ -6,14 +6,25 @@ public class EggOwned {
 	[PrimaryKey, AutoIncrement]
 	public int Id{ get; set; }
 	public string Category{ get; set; }
-	public int[] Options = new int[10];
 	public int CurrentCycles{ get; set; }
 	public int TotalCycles{ get; set; }
 	public bool Equipped{ get; set; }
+	public int Option1 { get; set; }
+	public int Option2 { get; set; }
+	public int Option3 { get; set; }
+	public int Option4{ get; set; }
+	public int Option5 { get; set; }
+	public int Option6 { get; set; }
+	public int Option7 { get; set; }
+	public int Option8 { get; set; }
+	public int Option9 { get; set; }
+	public int Option10 { get; set; }
 
-	public override string ToString ()
-	{
-		return string.Format ("[EggOwned: Id={0}, Category={1},  Options={2}, CurrentCycles={3}, TotalCyles={4}, Equipped={5}]", Id, Category, Options, CurrentCycles, TotalCycles, Equipped);
+
+
+	public override string ToString (){
+	
+		return string.Format ("[EggOwned: Id={0}, Category={1}, CurrentCycles={3}, TotalCyles={4}, Equipped={5}]", Id, Category, CurrentCycles, TotalCycles, Equipped);
 	}
 
 }

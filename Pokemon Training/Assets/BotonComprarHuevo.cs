@@ -1,0 +1,18 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class BotonComprarHuevo : MonoBehaviour {
+
+	void OnClick(){
+		EggOwnedDAO eggOwned = new EggOwnedDAO ();
+		EggBasicDAO eggBasic = new EggBasicDAO ();
+		PlayerDAO playerDAO = new PlayerDAO ();
+		int precioItem = eggBasic.GetEggBasic(transform.name).Price;
+		if (precioItem > playerDAO.GetPlayer ().Gold) {
+			UIController.instance.MostrarPanelMensaje("No dispones del oro suficiente para comprar eso");
+		} else {
+			playerDAO.UpdateGold(playerDAO.GetPlayer().Gold - precioItem);
+			eggOwned.CreateEggOwned (transform.name);
+		}
+	}
+}

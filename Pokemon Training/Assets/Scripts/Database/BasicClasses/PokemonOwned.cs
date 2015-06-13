@@ -12,6 +12,7 @@ public class PokemonOwned {
 	public int SpecialAttack{ get; set; }
 	public int SpecialDefense{ get; set; }
 	public int Speed{ get; set; }
+	public int CurrentHappyness{ get; set; }
 	public int Happyness{ get; set; }
 	public int CurrentExperience{ get; set; }
 	public int ExperienceNeeded{ get; set; }
@@ -33,6 +34,7 @@ public class PokemonOwned {
 		SpecialDefense += Mathf.FloorToInt (Random.Range (1, 3));
 		Speed += Mathf.FloorToInt (Random.Range (1, 3));
 		Happyness += Mathf.FloorToInt (Random.Range (10, 50));
+		CurrentHappyness = Happyness;
 		CurrentExperience = 0;
 		ExperienceNeeded = GameController.instance.CalcularExperienciaNecesaria (this);
 	}

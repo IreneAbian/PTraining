@@ -8,14 +8,16 @@ public class BatallaSegundoPokemon : MonoBehaviour {
 	public GameObject texto;
 	public GameObject sprite1;
 	public GameObject sprite2;
-	
+
+	public GameObject datosPrimero;
+	public GameObject datosSegundo;
+
 	private bool miTurno;
 	
 	public void GenerarBatalla(){
 		UILabel label = texto.GetComponent<UILabel> ();
 		label.text = "";
-		label.text = label.text + "Empieza la batalla";
-		
+		PokemonBasicDAO pkmBasic = new PokemonBasicDAO ();
 		PokemonOwnedDAO pkmOwned = new PokemonOwnedDAO ();
 		PlayerDAO player = new PlayerDAO ();
 		List<PokemonOwned> lista = pkmOwned.GetEquippedPokemon ().ToList ();
@@ -28,12 +30,13 @@ public class BatallaSegundoPokemon : MonoBehaviour {
 		if (enemy.Speed >= owned.Speed) {
 			miTurno = false;
 		}
-		Debug.Log ("Pokemon enemigo: " + enemy);
-		Debug.Log ("Mi pokemon: " + owned);
+
 		sprite1.GetComponent<UISprite> ().spriteName = owned.IdBasic + "";
 		sprite2.GetComponent<UISprite> ().spriteName = enemy.IdBasic + "";
 		
-		
+		datosPrimero.GetComponent<UILabel> ().text = pkmBasic.GetPokemon (owned.IdBasic).Name;
+		datosSegundo.GetComponent<UILabel> ().text = pkmBasic.GetPokemon (enemy.IdBasic).Name;
+
 		while (enemy.Hp > 0 && owned.Hp > 0) {
 			if (miTurno) {
 				int dano = owned.Attack - enemy.Defense/2;

@@ -25,34 +25,41 @@ public class MostrarDatosEquipoHospital : MonoBehaviour {
 		List<PokemonOwned> listPokemon = pkmowned.GetEquippedPokemon ().ToList();
 		if (listPokemon.Count () == 1) {
 			
-			float amountFirst = ((listPokemon[0].Hp * 100) / listPokemon[0].HpTotal) / 100;
+			float amountFirst = (listPokemon[0].Hp * 100)/listPokemon[0].HpTotal;
 			pokemon1.GetComponent<UISprite>().spriteName = (listPokemon[0].IdBasic)+"";
-			progressBar1.GetComponent<UISprite>().fillAmount = (amountFirst);
+			GameObject fore = progressBar1.transform.FindChild("ForegroundBar000").gameObject;
+			fore.GetComponent<UISprite>().fillAmount = (amountFirst/100);
 			
 		} else if (listPokemon.Count () == 2) {
 			
-			float amountFirst = ((listPokemon[0].Hp * 100) / listPokemon[0].HpTotal) / 100;
+			float amountFirst = (listPokemon[0].Hp * 100)/listPokemon[0].HpTotal;
 			pokemon1.GetComponent<UISprite>().spriteName = (listPokemon[0].IdBasic) + "";
-			progressBar1.GetComponent<UISprite>().fillAmount = (amountFirst);
-			
-			float amountSecond = ((listPokemon[1].Hp * 100) / listPokemon[1].HpTotal) / 100;
+			GameObject fore = progressBar1.transform.FindChild("ForegroundBar000").gameObject;
+			fore.GetComponent<UISprite>().fillAmount = (amountFirst/100);
+
+
+			float amountSecond = ((listPokemon[1].Hp * 100) / listPokemon[1].HpTotal);
 			pokemon2.GetComponent<UISprite>().spriteName = (listPokemon[1].IdBasic)+"";
-			progressBar2.GetComponent<UISprite>().fillAmount = (amountSecond);
+			GameObject fore2 = progressBar2.transform.FindChild("ForegroundBar001").gameObject;
+			fore2.GetComponent<UISprite>().fillAmount = (amountSecond/100);
 			
 		} else if (listPokemon.Count () == 3) {
 			
-			float amountFirst = ((listPokemon[0].Hp * 100) / listPokemon[0].HpTotal) / 100;
+			float amountFirst = (listPokemon[0].Hp * 100)/listPokemon[0].HpTotal;
 			pokemon1.GetComponent<UISprite>().spriteName = (listPokemon[0].IdBasic) + "";
-			progressBar1.GetComponent<UISprite>().fillAmount = (amountFirst);
+			GameObject fore = progressBar1.transform.FindChild("ForegroundBar000").gameObject;
+			fore.GetComponent<UISprite>().fillAmount = (amountFirst/100);
 			
-			float amountSecond = ((listPokemon[1].Hp * 100) / listPokemon[1].HpTotal) / 100;
+			float amountSecond = ((listPokemon[1].Hp * 100) / listPokemon[1].HpTotal) ;
 			pokemon2.GetComponent<UISprite>().spriteName = (listPokemon[1].IdBasic) + "";
-			progressBar2.GetComponent<UISprite>().fillAmount = (amountSecond);
+			GameObject fore2 = progressBar2.transform.FindChild("ForegroundBar001").gameObject;
+			fore2.GetComponent<UISprite>().fillAmount = (amountSecond/100);
 			
-			float amountThird = ((listPokemon[2].Hp * 100) / listPokemon[2].HpTotal) / 100;
+			float amountThird = ((listPokemon[2].Hp * 100) / listPokemon[2].HpTotal);
 			pokemon3.GetComponent<UISprite>().spriteName = (listPokemon[2].IdBasic)+"";
-			progressBar3.GetComponent<UISprite>().fillAmount = amountThird;
-			
+			GameObject fore3 = progressBar3.transform.FindChild("ForegroundBar002").gameObject;
+			fore2.GetComponent<UISprite>().fillAmount = (amountThird/100);
+
 		} else if (listPokemon.Count() == 0) {
 			pokemon1.GetComponent<UISprite>().spriteName = "0";
 			pokemon2.GetComponent<UISprite>().spriteName = "0";

@@ -7,8 +7,10 @@ public class EggBasicDAO{
         return DataService.instance._connection.Table<EggBasic>();
 	}
 
-	public void CreateEggBasic(EggBasic newEggBasic){
-		DataService.instance._connection.Insert(newEggBasic);
+	public EggBasic GetEggBasic(string category){
+		return DataService.instance._connection.Table<EggBasic> ().Where (x => x.Category == category).FirstOrDefault();
+
 	}
+
 
 }

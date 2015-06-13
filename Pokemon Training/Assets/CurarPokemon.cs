@@ -18,7 +18,7 @@ public class CurarPokemon : MonoBehaviour {
 			}
 			labelPrecio.GetComponent<UILabel> ().text = "Precio: " + GameController.instance.CalcularPrecioHospital ();
 		} else {
-			UIController.instance.MostrarPanelHospitalNoDinero();
+			UIController.instance.MostrarPanelMensaje("No dispones del dinero suficiente para curar a tus pokemon");
 		}
 	}
 }
