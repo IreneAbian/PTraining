@@ -7,15 +7,13 @@ public class PlayerMovement : MonoBehaviour {
 	Animator anim;
 	private Vector2 touchOrigin = -Vector2.one;
 	public Vector2 movement;
+	public GameObject movementPad;
 	
-
-	// Use this for initialization
-	void Start () {
+		void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 		anim = GetComponent<Animator> ();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		movement = Vector2.zero;
 
@@ -23,29 +21,41 @@ public class PlayerMovement : MonoBehaviour {
 
         movement = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
 
-		#elif UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
+	//	#elif UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
 
-		if (Input.touchCount > 0)
-        {
-            if (Input.GetTouch(0).position.x > Screen.width / 2)
-            {
-                movement.x = 1;
-            } else if (Input.GetTouch(0).position.x < Screen.width / 2)
-            {
-                movement.x = -1;
-            }
+		GameObject buttonUp = movementPad.transform.FindChild("ButtonUp").gameObject;
+		if (buttonUp.GetComponent<MovimientoPadUp>().pulsado){
+			movement.y = 1;
+		} else {
+			movement.y = 0;
+		}
 
-            if (Input.GetTouch(0).position.y > Screen.width / 2)
-            {
-                movement.y = 1;
-            } 
-            else if (Input.GetTouch(0).position.y < Screen.width / 2)
-            {
-                movement.y = -1;
-            }
-
-
-        }
+		GameObject buttonDown = movementPad.transform.FindChild("ButtonDown").gameObject;
+		if (buttonDown.GetComponent<MovimientoPadDown>().pulsado){
+			movement.y = -1;
+		} else {
+			movement.y = 0;
+		}
+		//		if (Input.touchCount > 0)
+//        {
+//            if (Input.GetTouch(0).position.x > Screen.width / 2)
+//            {
+//                movement.x = 1;
+//            } 
+//			else if (Input.GetTouch(0).position.x < Screen.width / 2)
+//            {
+//                movement.x = -1;
+//            }
+//
+//            if (Input.GetTouch(0).position.y > Screen.width / 2)
+//            {
+//                movement.y = 1;
+//            } 
+//            else if (Input.GetTouch(0).position.y < Screen.width / 2)
+//            {
+//                movement.y = -1;
+//            }
+//        }
 
 		#endif
 

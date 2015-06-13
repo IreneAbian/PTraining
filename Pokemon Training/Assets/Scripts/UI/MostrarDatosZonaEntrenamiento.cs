@@ -55,7 +55,7 @@ public class MostrarDatosZonaEntrenamiento : MonoBehaviour {
 				fore.GetComponent<UISprite> ().fillAmount = (amountFirst / 100);
 			
 				float amountExp = (listPokemon[0].CurrentExperience * 100)/ listPokemon[0].ExperienceNeeded;
-				GameObject foreExp = barraExperiencia1.transform.Find("ForeExp000").gameObject;
+				GameObject foreExp = barraExperiencia1.transform.FindChild("ForeExp000").gameObject;
 				foreExp.GetComponent<UISprite>().fillAmount = (amountExp/100);
 			} else if (listPokemon.Count () == 2) {
 			
@@ -66,7 +66,7 @@ public class MostrarDatosZonaEntrenamiento : MonoBehaviour {
 				fore.GetComponent<UISprite> ().fillAmount = (amountFirst / 100);
 			
 				float amountExp = (listPokemon[0].CurrentExperience * 100)/ listPokemon[0].ExperienceNeeded;
-				GameObject foreExp = barraExperiencia1.transform.Find("ForeExp000").gameObject;
+				GameObject foreExp = barraExperiencia1.transform.FindChild("ForeExp000").gameObject;
 				foreExp.GetComponent<UISprite>().fillAmount = (amountExp/100);
 
 				float amountSecond = ((listPokemon [1].CurrentHappyness * 100) / listPokemon [1].Happyness);
@@ -76,7 +76,7 @@ public class MostrarDatosZonaEntrenamiento : MonoBehaviour {
 				fore2.GetComponent<UISprite> ().fillAmount = (amountSecond / 100);
 			
 				float amountExp2 = (listPokemon[1].CurrentExperience*100)/listPokemon[1].ExperienceNeeded;
-				GameObject foreExp2 = barraExperiencia2.transform.Find ("ForeExp001").gameObject;
+				GameObject foreExp2 = barraExperiencia2.transform.FindChild ("ForeExp001").gameObject;
 				foreExp2.GetComponent<UISprite>().fillAmount = amountExp2/100;
 
 			} else if (listPokemon.Count () == 3) {
@@ -88,7 +88,7 @@ public class MostrarDatosZonaEntrenamiento : MonoBehaviour {
 				fore.GetComponent<UISprite> ().fillAmount = (amountFirst / 100);
 			
 				float amountExp = (listPokemon[0].CurrentExperience * 100)/ listPokemon[0].ExperienceNeeded;
-				GameObject foreExp = barraExperiencia1.transform.Find("ForeExp000").gameObject;
+				GameObject foreExp = barraExperiencia1.transform.FindChild("ForeExp000").gameObject;
 				foreExp.GetComponent<UISprite>().fillAmount = (amountExp/100);
 
 				float amountSecond = ((listPokemon [1].CurrentHappyness * 100) / listPokemon [1].Happyness);
@@ -98,7 +98,7 @@ public class MostrarDatosZonaEntrenamiento : MonoBehaviour {
 				fore2.GetComponent<UISprite> ().fillAmount = (amountSecond / 100);
 			
 				float amountExp2 = (listPokemon[1].CurrentExperience*100)/listPokemon[1].ExperienceNeeded;
-				GameObject foreExp2 = barraExperiencia2.transform.Find ("ForeExp001").gameObject;
+				GameObject foreExp2 = barraExperiencia2.transform.FindChild ("ForeExp001").gameObject;
 				foreExp2.GetComponent<UISprite>().fillAmount = amountExp2/100;
 
 				float amountThird = ((listPokemon [2].CurrentHappyness * 100) / listPokemon [2].Happyness);
@@ -108,7 +108,7 @@ public class MostrarDatosZonaEntrenamiento : MonoBehaviour {
 				fore2.GetComponent<UISprite> ().fillAmount = (amountThird / 100);
 			
 				float amountExp3 = (listPokemon[2].CurrentExperience*100)/listPokemon[2].ExperienceNeeded;
-				GameObject foreExp3 = barraExperiencia3.transform.Find("ForeExp002").gameObject;
+				GameObject foreExp3 = barraExperiencia3.transform.FindChild("ForeExp002").gameObject;
 				foreExp3.GetComponent<UISprite>().fillAmount = amountExp3/100;
 
 			} else if (listPokemon.Count () == 0) {
@@ -138,22 +138,22 @@ public class MostrarDatosZonaEntrenamiento : MonoBehaviour {
 			steps++;
 		}
 
-		if (steps > 100) {
+		if (steps > 10) {
 			actualizarDatos = true;
-
 			PokemonOwnedDAO pkmOwned = new PokemonOwnedDAO ();
 			List<PokemonOwned> listPokemon = pkmOwned.GetEquippedPokemon ().ToList ();
 			PlayerDAO playerDAO = new PlayerDAO();
 			EggOwnedDAO eggOwned = new EggOwnedDAO();
 			for (int i = 0; i < listPokemon.Count(); i++){
-				listPokemon[i].CurrentHappyness -= 10;
-				listPokemon[i].CurrentExperience += 15;
-				if (listPokemon[i].CurrentExperience > listPokemon[i].ExperienceNeeded){
-					listPokemon[i].LevelUp();
-					playerDAO.UpdateGold(playerDAO.GetPlayer().Gold + (listPokemon[i].Level*5)); 
+				if (listPokemon[i].CurrentHappyness >1){
+					listPokemon[i].CurrentHappyness -= 1;
+					listPokemon[i].CurrentExperience += 2;
+					if (listPokemon[i].CurrentExperience > listPokemon[i].ExperienceNeeded){
+						listPokemon[i].LevelUp();
+						playerDAO.UpdateGold(playerDAO.GetPlayer().Gold + (listPokemon[i].Level*5)); 
+					}
+					pkmOwned.UpdatePokemon(listPokemon[i].Id, listPokemon[i]);
 				}
-				pkmOwned.UpdatePokemon(listPokemon[i].Id, listPokemon[i]);
-
 			}
 			if (eggOwned.GetEquippedEgg() != null){
 				eggOwned.AumentarCiclo();

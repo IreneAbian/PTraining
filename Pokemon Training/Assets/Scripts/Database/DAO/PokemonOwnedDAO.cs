@@ -106,4 +106,22 @@ public class PokemonOwnedDAO{
 		return pokemonOwned;
 	}
 
+	public void Evolucionar(int id){
+		PokemonBasicDAO pkmBasic = new PokemonBasicDAO ();
+		PokemonOwned pokemonOwned = GetPokemon (id);
+		PokemonBasic pokemonBasic = pkmBasic.GetPokemon (pokemonOwned.IdBasic);
+		PokemonBasic evolution = pkmBasic.GetPokemon (pokemonBasic.EvolvesTo);
+		pokemonOwned.IdBasic = evolution.Id;
+		pokemonOwned.Hp = pokemonBasic.BasicHp;
+		pokemonOwned.HpTotal = pokemonBasic.BasicHp;
+		pokemonOwned.Attack = pokemonBasic.BasicAttack;
+		pokemonOwned.Defense = pokemonBasic.BasicDefense;
+		pokemonOwned.SpecialAttack = pokemonBasic.BasicSpecialAttack;
+		pokemonOwned.SpecialDefense = pokemonBasic.BasicSpecialDefense;
+		pokemonOwned.Speed = pokemonBasic.BasicSpeed;
+		pokemonOwned.CurrentExperience = 0;
+		pokemonOwned.ExperienceNeeded = GameController.instance.CalcularExperienciaNecesaria (pokemonOwned);
+		UpdatePokemon (pokemonOwned.Id, pokemonOwned);
+	}
+
 }

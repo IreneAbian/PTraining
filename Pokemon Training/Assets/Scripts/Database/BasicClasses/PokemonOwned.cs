@@ -26,17 +26,24 @@ public class PokemonOwned {
 	}
 
 	public void LevelUp(){
+		PokemonBasicDAO pkmBasic = new PokemonBasicDAO ();
+		PokemonOwnedDAO pkmOwned = new PokemonOwnedDAO ();
+		PokemonBasic basico = pkmBasic.GetPokemon (IdBasic);
 		Level++;
-		HpTotal += Mathf.FloorToInt (Random.Range (1, 3));
-		Attack += Mathf.FloorToInt (Random.Range (1, 3));
-		Defense += Mathf.FloorToInt (Random.Range (1, 3));
-		SpecialAttack += Mathf.FloorToInt (Random.Range (1, 3));
-		SpecialDefense += Mathf.FloorToInt (Random.Range (1, 3));
-		Speed += Mathf.FloorToInt (Random.Range (1, 3));
-		Happyness += Mathf.FloorToInt (Random.Range (10, 50));
-		CurrentHappyness = Happyness;
-		CurrentExperience = 0;
-		ExperienceNeeded = GameController.instance.CalcularExperienciaNecesaria (this);
+		if (Level == basico.EvolvesAt) {
+			pkmOwned.Evolucionar(Id);
+		} else {
+			HpTotal += Mathf.FloorToInt (Random.Range (2, 5));
+			Attack += Mathf.FloorToInt (Random.Range (2, 5));
+			Defense += Mathf.FloorToInt (Random.Range (2, 5));
+			SpecialAttack += Mathf.FloorToInt (Random.Range (2, 5));
+			SpecialDefense += Mathf.FloorToInt (Random.Range (2, 5));
+			Speed += Mathf.FloorToInt (Random.Range (2, 5));
+			Happyness += Mathf.FloorToInt (Random.Range (10, 50));
+			CurrentHappyness = Happyness;
+			CurrentExperience = 0;
+			ExperienceNeeded = GameController.instance.CalcularExperienciaNecesaria (this);
+		}
 	}
 	
 }
