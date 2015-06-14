@@ -7,7 +7,7 @@ public class UIController : MonoBehaviour {
 
 	public List<GameObject> paneles;
 
-	public GameObject labelNombreDB;
+	public GameObject labelNombre;
 	public GameObject labelOro;
 	public GameObject labelPokemon;
 
@@ -52,7 +52,7 @@ public class UIController : MonoBehaviour {
 	public void MostrarDatosPantallaInicio(){
 		PlayerDAO player = new PlayerDAO ();
 		labelOro.GetComponent<UILabel> ().text = "Oro: "+ player.GetPlayer ().Gold;
-		labelNombreDB.GetComponent<UILabel> ().text = "Nombre: "+ player.GetPlayer ().Name;
+		labelNombre.GetComponent<UILabel> ().text = "Nombre: "+ player.GetPlayer ().Name;
 		PokemonOwnedDAO pokemon = new PokemonOwnedDAO ();
 		labelPokemon.GetComponent<UILabel>().text = "Pokemon: "+ pokemon.GetOwnedPokemon ().ToList().Count();
 	}

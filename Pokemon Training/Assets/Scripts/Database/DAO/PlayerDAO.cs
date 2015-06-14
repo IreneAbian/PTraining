@@ -19,7 +19,7 @@ public class PlayerDAO{
 	public void CrearJugador(string nombre){
 		Player player = new Player ();
 		player.Name = nombre;
-		player.Gold = 0;
+		player.Gold = 1500;
 		DataService.instance._connection.Insert(player);
 	}
 }

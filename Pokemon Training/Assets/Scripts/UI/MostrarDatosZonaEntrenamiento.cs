@@ -124,6 +124,7 @@ public class MostrarDatosZonaEntrenamiento : MonoBehaviour {
 				nombreHuevo.GetComponent<UILabel>().text = "Huevo "+egg.Category;
 				float amountEgg = ((egg.CurrentCycles * 100) / egg.TotalCycles);
 				GameObject fore = barraHuevo.transform.FindChild ("Foreground").gameObject;
+				spriteHuevo.GetComponent<UISprite>().spriteName = "Egg";
 				fore.GetComponent<UISprite>().fillAmount = amountEgg / 100;
 				spriteHuevo.GetComponent<UISprite>().transform.localScale = new Vector3(150, 150, 0);
 			} else {
@@ -158,12 +159,12 @@ public class MostrarDatosZonaEntrenamiento : MonoBehaviour {
 					pkmOwned.UpdatePokemon(listPokemon[i].Id, listPokemon[i]);
 				}
 			}
-			if (stepsEgg == 10){
+			if (stepsEgg == 3){
 				if (eggOwned.GetEquippedEgg() != null){
 					eggOwned.AumentarCiclo();
 				}
+				stepsEgg = 0;
 			}
-			stepsEgg = 0;
 			steps = 0;
 		}
 	}

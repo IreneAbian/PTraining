@@ -7,7 +7,6 @@ public class GameController : MonoBehaviour {
 
 	public static GameController instance = null;
 	public GameObject mapa;
-	PlayerDAO player;
 	public GameObject jugador;
 
 	void Awake(){
@@ -21,7 +20,7 @@ public class GameController : MonoBehaviour {
 			Destroy(instance);
 		}
 
-		player = new PlayerDAO ();
+		PlayerDAO player= new PlayerDAO ();
 
 		if (player.GetPlayer () == null) {
 			UIController.instance.MostrarPanelNuevoJugador ();
@@ -60,7 +59,7 @@ public class GameController : MonoBehaviour {
 		if (precio > playerD.GetPlayer().Gold){
 			pagado = false;
 		} else {
-			player.UpdateGold(playerD.GetPlayer().Gold - precio);
+			playerD.UpdateGold(playerD.GetPlayer().Gold - precio);
 		}
 		return pagado;
 	}
