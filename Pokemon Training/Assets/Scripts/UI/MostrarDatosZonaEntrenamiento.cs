@@ -33,11 +33,13 @@ public class MostrarDatosZonaEntrenamiento : MonoBehaviour {
 	float curAcc = 0f;
 	float fLow = 0.1f;
 	float avgAcc = 0.0f;
+	int stepsEgg;
 
 	void Start(){
 		actualizarDatos = true;
 		avgAcc = Input.acceleration.magnitude;
 		steps = 0;
+		stepsEgg = 0;
 	}
 	void Update(){
 		PokemonOwnedDAO pkmOwned = new PokemonOwnedDAO ();
@@ -48,7 +50,7 @@ public class MostrarDatosZonaEntrenamiento : MonoBehaviour {
 			if (listPokemon.Count () == 1) {
 
 				float amountFirst = (listPokemon [0].CurrentHappyness * 100) / listPokemon [0].Happyness;
-				nombre1.GetComponent<UILabel>().text = pkmBasic.GetPokemon(listPokemon[0].IdBasic).Name;
+				nombre1.GetComponent<UILabel>().text = pkmBasic.GetPokemon(listPokemon[0].IdBasic).Name+" Nvl: "+listPokemon[0].Level;
 				pokemon1.GetComponent<UISprite> ().spriteName = (listPokemon [0].IdBasic) + "";
 
 				GameObject fore = progressBar1.transform.FindChild ("ForegroundBar000").gameObject;
@@ -60,7 +62,7 @@ public class MostrarDatosZonaEntrenamiento : MonoBehaviour {
 			} else if (listPokemon.Count () == 2) {
 			
 				float amountFirst = (listPokemon [0].CurrentHappyness * 100) / listPokemon [0].Happyness;
-				nombre1.GetComponent<UILabel>().text = pkmBasic.GetPokemon(listPokemon[0].IdBasic).Name;
+				nombre1.GetComponent<UILabel>().text = pkmBasic.GetPokemon(listPokemon[0].IdBasic).Name+" Nvl: "+listPokemon[0].Level;
 				pokemon1.GetComponent<UISprite> ().spriteName = (listPokemon [0].IdBasic) + "";
 				GameObject fore = progressBar1.transform.FindChild ("ForegroundBar000").gameObject;
 				fore.GetComponent<UISprite> ().fillAmount = (amountFirst / 100);
@@ -70,7 +72,7 @@ public class MostrarDatosZonaEntrenamiento : MonoBehaviour {
 				foreExp.GetComponent<UISprite>().fillAmount = (amountExp/100);
 
 				float amountSecond = ((listPokemon [1].CurrentHappyness * 100) / listPokemon [1].Happyness);
-				nombre2.GetComponent<UILabel>().text = pkmBasic.GetPokemon(listPokemon[1].IdBasic).Name;
+				nombre2.GetComponent<UILabel>().text = pkmBasic.GetPokemon(listPokemon[1].IdBasic).Name+" Nvl: "+listPokemon[1].Level;
 				pokemon2.GetComponent<UISprite> ().spriteName = (listPokemon [1].IdBasic) + "";
 				GameObject fore2 = progressBar2.transform.FindChild ("ForegroundBar001").gameObject;
 				fore2.GetComponent<UISprite> ().fillAmount = (amountSecond / 100);
@@ -82,7 +84,7 @@ public class MostrarDatosZonaEntrenamiento : MonoBehaviour {
 			} else if (listPokemon.Count () == 3) {
 			
 				float amountFirst = (listPokemon [0].CurrentHappyness * 100) / listPokemon [0].Happyness;
-				nombre1.GetComponent<UILabel>().text = pkmBasic.GetPokemon(listPokemon[0].IdBasic).Name;
+				nombre1.GetComponent<UILabel>().text = pkmBasic.GetPokemon(listPokemon[0].IdBasic).Name+" Nvl: "+listPokemon[0].Level;
 				pokemon1.GetComponent<UISprite> ().spriteName = (listPokemon [0].IdBasic) + "";
 				GameObject fore = progressBar1.transform.FindChild ("ForegroundBar000").gameObject;
 				fore.GetComponent<UISprite> ().fillAmount = (amountFirst / 100);
@@ -92,7 +94,7 @@ public class MostrarDatosZonaEntrenamiento : MonoBehaviour {
 				foreExp.GetComponent<UISprite>().fillAmount = (amountExp/100);
 
 				float amountSecond = ((listPokemon [1].CurrentHappyness * 100) / listPokemon [1].Happyness);
-				nombre2.GetComponent<UILabel>().text = pkmBasic.GetPokemon(listPokemon[1].IdBasic).Name;
+				nombre2.GetComponent<UILabel>().text = pkmBasic.GetPokemon(listPokemon[1].IdBasic).Name+" Nvl: "+listPokemon[1].Level;
 				pokemon2.GetComponent<UISprite> ().spriteName = (listPokemon [1].IdBasic) + "";
 				GameObject fore2 = progressBar2.transform.FindChild ("ForegroundBar001").gameObject;
 				fore2.GetComponent<UISprite> ().fillAmount = (amountSecond / 100);
@@ -102,10 +104,10 @@ public class MostrarDatosZonaEntrenamiento : MonoBehaviour {
 				foreExp2.GetComponent<UISprite>().fillAmount = amountExp2/100;
 
 				float amountThird = ((listPokemon [2].CurrentHappyness * 100) / listPokemon [2].Happyness);
-				nombre3.GetComponent<UILabel>().text = pkmBasic.GetPokemon(listPokemon[2].IdBasic).Name;
+				nombre3.GetComponent<UILabel>().text = pkmBasic.GetPokemon(listPokemon[2].IdBasic).Name+" Nvl: "+listPokemon[2].Level;
 				pokemon3.GetComponent<UISprite> ().spriteName = (listPokemon [2].IdBasic) + "";
 				GameObject fore3 = progressBar3.transform.FindChild ("ForegroundBar002").gameObject;
-				fore2.GetComponent<UISprite> ().fillAmount = (amountThird / 100);
+				fore3.GetComponent<UISprite> ().fillAmount = (amountThird / 100);
 			
 				float amountExp3 = (listPokemon[2].CurrentExperience*100)/listPokemon[2].ExperienceNeeded;
 				GameObject foreExp3 = barraExperiencia3.transform.FindChild("ForeExp002").gameObject;
@@ -139,6 +141,7 @@ public class MostrarDatosZonaEntrenamiento : MonoBehaviour {
 		}
 
 		if (steps > 10) {
+			stepsEgg++;
 			actualizarDatos = true;
 			PokemonOwnedDAO pkmOwned = new PokemonOwnedDAO ();
 			List<PokemonOwned> listPokemon = pkmOwned.GetEquippedPokemon ().ToList ();
@@ -155,9 +158,12 @@ public class MostrarDatosZonaEntrenamiento : MonoBehaviour {
 					pkmOwned.UpdatePokemon(listPokemon[i].Id, listPokemon[i]);
 				}
 			}
-			if (eggOwned.GetEquippedEgg() != null){
-				eggOwned.AumentarCiclo();
+			if (stepsEgg == 10){
+				if (eggOwned.GetEquippedEgg() != null){
+					eggOwned.AumentarCiclo();
+				}
 			}
+			stepsEgg = 0;
 			steps = 0;
 		}
 	}

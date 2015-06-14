@@ -102,22 +102,28 @@ public class GameController : MonoBehaviour {
 		ItemsOwnedDAO itemsOwned = new ItemsOwnedDAO ();
 		PokemonOwned seleccionado = pkmOwned.GetPokemon (id);
 		ItemsOwned itemSelected = itemsOwned.GetItemOwned (UIController.instance.itemSeleccionado);
+		int happynessFinal;
 		switch (itemSelected.NameBasic) {
 		case "Pocion Aguante 20":
-			int happynessFinal = seleccionado.CurrentHappyness+20;
+			happynessFinal = seleccionado.CurrentHappyness+20;
 			if (happynessFinal > seleccionado.Happyness){
 				seleccionado.CurrentHappyness = seleccionado.Happyness;
 			} else {
-				seleccionado.Happyness += 20;
+				seleccionado.CurrentHappyness += 20;
 			}
 			pkmOwned.UpdatePokemon(seleccionado);
 			itemsOwned.DeleteItemOwned(itemSelected.Id);
 		break;
 		case "Pocion Aguante 40":
-			seleccionado.Happyness += 40;
+			happynessFinal = seleccionado.CurrentHappyness+40;
+			if (happynessFinal > seleccionado.Happyness){
+				seleccionado.CurrentHappyness = seleccionado.Happyness;
+			} else {
+				seleccionado.CurrentHappyness += 40;
+			}
 			pkmOwned.UpdatePokemon(seleccionado);
 			itemsOwned.DeleteItemOwned(itemSelected.Id);
-		break;
+			break;
 		}
 	}
 

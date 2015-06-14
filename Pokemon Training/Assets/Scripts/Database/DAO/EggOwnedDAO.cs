@@ -57,9 +57,9 @@ public class EggOwnedDAO{
 		int id = eggOwned.Id;
 		if (eggOwned != null) {
 			int cycles = eggOwned.CurrentCycles++;
-			Debug.Log ("Cicles: " + eggOwned.CurrentCycles);
 			if (cycles < eggOwned.TotalCycles) {
-				DataService.instance._connection.Execute ("Update EggOwned set CurrentCycles = ? where Id = ?", cycles, id);
+				eggOwned.CurrentCycles++;
+				DataService.instance._connection.Update(eggOwned);
 			} else {
 				PokemonOwnedDAO pkmOwned = new PokemonOwnedDAO ();
 				int random = Random.Range (0, 10);

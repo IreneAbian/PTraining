@@ -24,7 +24,7 @@ public class EggOwned {
 
 	public override string ToString (){
 	
-		return string.Format ("[EggOwned: Id={0}, Category={1}, CurrentCycles={3}, TotalCyles={4}, Equipped={5}]", Id, Category, CurrentCycles, TotalCycles, Equipped);
+		return string.Format ("[EggOwned: Id={0}, Category={1}, CurrentCycles={2}, TotalCyles={3}, Equipped={4}]", Id, Category, CurrentCycles, TotalCycles, Equipped);
 	}
 
 }

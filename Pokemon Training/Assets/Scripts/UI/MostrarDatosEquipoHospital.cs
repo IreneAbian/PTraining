@@ -35,6 +35,7 @@ public class MostrarDatosEquipoHospital : MonoBehaviour {
 
 			GameObject fore3 = progressBar3.transform.FindChild("ForegroundBar002").gameObject;
 			fore3.GetComponent<UISprite>().fillAmount = 0;
+
 		} else if (listPokemon.Count () == 2) {
 			
 			float amountFirst = (listPokemon[0].Hp * 100)/listPokemon[0].HpTotal;
